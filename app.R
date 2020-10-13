@@ -1,5 +1,3 @@
-library(shiny)
-
 # UI ####
 ui <- fluidPage(# Application title
     titlePanel("Bibliometrics"),
@@ -170,18 +168,26 @@ server <- function(input, output) {
 }
 
 # Prepare the application ####
-Library <- function(Packages) {
-    # Install missing packages and load all packages
-    InstallAndLoad <- function(Package) {
-        if (!Package %in% installed.packages()[, 1]) {
-            install.packages(Package, repos = "https://cran.rstudio.com/")
-        }
-        require(Package, character.only = TRUE)
-    }
-    invisible(sapply(Packages, InstallAndLoad))
+
+# Does the app run locally?
+is_local <- (Sys.getenv('SHINY_PORT') == "")
+
+# Install necessary packages ####
+InstallPackages <- function(Packages) {
+    sapply(Packages, function(Package) 
+        if (!Package %in% installed.packages()[, 1]) {install.packages(Package)})
 }
-# Packages
-Library(c("scholar", "tidyverse", "ggraph", "igraph", "magrittr"))
+
+# Necessary packages (not run on shyniapps.io)
+if(is_local) InstallPackages(c("shiny", "tidyverse", "magrittr", "scholar", "ggraph", "igraph"))
+    
+# Load packages
+library("shiny")
+library("tidyverse")
+library("magrittr")
+library("scholar")
+library("ggraph")
+library("igraph")
 
 
 # Run the application ####
