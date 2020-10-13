@@ -6,4 +6,3 @@ Choose an author and get her co-author network, number of citations per year and
 ![Bibliometrics Shiny app](capture.png)
 
 Run `app.R` and enter the Google Scholar ID of an author.
-
