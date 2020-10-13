@@ -1,7 +1,9 @@
 # Bibliometrics
 
-A shiny application relying on Google Scholar. 
+A shiny application relying on Google Scholar (queried through the [scholar](http://github.com/jkeirstead/scholar) package).
 Choose an author and get her co-author network, number of citations per year and h index.
 
-The app is hosted by shinyapps.io.
-[Run it](https://eric-marcon.shinyapps.io/bibliometrics/).
+![Bibliometrics Shiny app](capture.png)
+
+Run `app.R` and enter the Google Scholar ID of an author.
+
